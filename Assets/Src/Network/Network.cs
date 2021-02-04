@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Mirror;
 
 public class Network : NetworkBehaviour
@@ -9,9 +8,19 @@ public class Network : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-            Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0);
+            Keyboard keyboard = Keyboard.current;
+            if (keyboard == null)
+            {
+                return;
+            }
+
+
+            int horizontalMove = 0;
+            if (keyboard.IsPressed((float)Key.A))
+            {
+                horizontalMove = -1;
+            }
+            Vector3 movement = new Vector3(horizontalMove, 0, 0);
             transform.position = transform.position + movement;
         }
     }
