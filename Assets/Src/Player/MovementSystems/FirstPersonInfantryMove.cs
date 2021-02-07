@@ -6,20 +6,26 @@ using Mirror;
 
 public class FirstPersonInfantryMove : MonoBehaviour
 {
+    public InputAction movementInput;
     double MoveSpeed = 0.1;
 
     // Start is called before the first frame update
     void Start()
     {
+        movementInput.Enable();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        movementInput.Disable();
+        if (movementInput.IsPressed())
+        {
+            Debug.Log("It's pressed.");
+        }
     }
 
-    public void MoveAction(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         // if (isLocalPlayer)
         // {

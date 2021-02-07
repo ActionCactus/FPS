@@ -383,7 +383,7 @@ MonoBehaviour:
   autoStartServerBuild: 1
   showDebugMessages: 0
   serverTickRate: 30
-  offlineScene: Assets/Mirror/Examples/Basic/Scenes/Example.unity
+  offlineScene: 
   onlineScene: Assets/Scenes/SampleScene.unity
   transport: {fileID: 1009822079}
   networkAddress: localhost
