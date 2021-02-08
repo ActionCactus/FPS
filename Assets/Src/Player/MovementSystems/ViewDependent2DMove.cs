@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Mirror;
 
 [AddComponentMenu("Player/Movement/ViewDependent2DMove")]
+[RequireComponent(typeof(Rigidbody))]
 public class ViewDependent2DMove : MonoBehaviour
 {
     [Tooltip("The input bindings for this movement system")]
@@ -30,6 +28,7 @@ public class ViewDependent2DMove : MonoBehaviour
 
         Vector2 inputVector = this.InputAction.ReadValue<Vector2>();
         Vector3 velocity = new Vector3(inputVector.x, 0, inputVector.y);
+        velocity = transform.TransformDirection(velocity);
 
         this.playerRigidBody.MovePosition(
             this.playerRigidBody.position + velocity * (this.MoveSpeedMultiplier * Time.fixedDeltaTime)
