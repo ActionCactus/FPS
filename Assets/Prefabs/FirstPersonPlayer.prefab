@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 404673017932520306}
   - component: {fileID: 2392469942588126013}
   - component: {fileID: 1289883475245912527}
-  - component: {fileID: 4898807332937854759}
   - component: {fileID: 9090195336316038196}
   - component: {fileID: 7170802417054410434}
   - component: {fileID: 6626567404548957217}
@@ -214,14 +213,6 @@ MonoBehaviour:
       m_Action: Input
       m_Flags: 8
   MoveSpeedMultiplier: 1
---- !u!81 &4898807332937854759
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7899055768101758558}
-  m_Enabled: 1
 --- !u!33 &9090195336316038196
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -358,3 +349,5 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input
       m_Flags: 0
+  jumpForce: 5
+  groundDistanceCheck: 1

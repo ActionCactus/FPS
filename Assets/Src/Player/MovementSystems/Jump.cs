@@ -6,7 +6,12 @@ public class Jump : MonoBehaviour
 {
     public InputAction InputAction;
 
+    public float jumpForce = 5f;
+    public float groundDistanceCheck = 1f;
+
     private Rigidbody rigidBody;
+
+    private bool isJumping = false;
     public void Start()
     {
         this.rigidBody = GetComponent<Rigidbody>();
@@ -15,23 +20,33 @@ public class Jump : MonoBehaviour
 
     public void Update()
     {
-        if (!this.InputAction.IsPressed())
+        // TODO: fix for double jump?
+        // TODO: this won't work if the player hits & releases the jump button in very rapid succession (IE: two sequential frames, before the player has really moved)
+        if (this.isGrounded() && !this.InputAction.IsPressed())
+        {
+            this.isJumping = false;
+        }
+
+        if (!this.InputAction.IsPressed() || this.isJumping)
         {
             return;
         }
 
-        if (this.rigidBody.velocity.y != 0)
-        {
-            // If the player is falling, they can't jump!
-            // This is stupid, btw.  Use a proper state check
-            return;
-        }
-
-        this.rigidBody.MovePosition(this.rigidBody.position + new Vector3(0, 0.1f, 0));
+        this.rigidBody.AddForce(new Vector3(0, this.jumpForce, 0), ForceMode.Impulse);
+        this.isJumping = true;
     }
 
     public void OnDestroy()
     {
         this.InputAction.Disable();
+    }
+
+    private bool isGrounded()
+    {
+        return Physics.Raycast(
+            transform.position,
+            transform.TransformDirection(Vector3.down),
+            this.groundDistanceCheck
+        );
     }
 }
