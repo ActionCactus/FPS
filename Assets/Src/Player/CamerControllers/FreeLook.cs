@@ -12,7 +12,7 @@ public class FreeLook : MonoBehaviour
     public InputAction InputAction;
 
     [Tooltip("Adjusts the sensitivity of the look movement.  Higher values equate to faster rotation speeds.")]
-    public float LookSensitivityMultiplier = 1.0f;
+    public float LookSensitivityMultiplier = 0.1f;
 
     private Rigidbody playerRigidBody;
     private Camera playerCamera;
@@ -37,9 +37,6 @@ public class FreeLook : MonoBehaviour
 
         Vector3 verticalRotation = new Vector3(inputVector.y, 0, 0) * this.LookSensitivityMultiplier;
         this.playerCamera.transform.Rotate(-verticalRotation);
-        // this.playerCamera.transform.rotation.SetLookRotation(
-        //     -verticalRotation
-        // );
     }
 
     public void OnDestroy()

@@ -152,7 +152,7 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input
       m_Flags: 0
-  LookSensitivityMultiplier: 1
+  LookSensitivityMultiplier: 0.1
 --- !u!114 &1289883475245912527
 MonoBehaviour:
   m_ObjectHideFlags: 0
