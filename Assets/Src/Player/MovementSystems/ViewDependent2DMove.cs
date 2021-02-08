@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Transforms the rigidbody's position based on input from the configured InputAction.  Ignores vertical rotations,
+/// effectively only moving the GameObject on flat surfaces.
+/// </summary>
 [AddComponentMenu("Player/Movement/ViewDependent2DMove")]
 [RequireComponent(typeof(Rigidbody))]
 public class ViewDependent2DMove : MonoBehaviour
