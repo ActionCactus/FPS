@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 1733824283041289140}
   - component: {fileID: 6506092204278434868}
   - component: {fileID: 7279113614935535629}
+  - component: {fileID: 8554548845288342865}
   m_Layer: 0
   m_Name: FirstPersonPlayer
   m_TagString: MainCamera
@@ -351,3 +352,31 @@ MonoBehaviour:
       m_Flags: 0
   jumpForce: 5
   groundDistanceCheck: 1
+--- !u!114 &8554548845288342865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899055768101758558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e97aa45ebd5384498df48f32698b09a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputAction:
+    m_Name: Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 89a94842-f31d-41a1-b4d1-49e63bfff1c5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 65d49267-862f-493a-b93b-eb46bbeda8d4
+      m_Path: <Keyboard>/ctrl
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 0
