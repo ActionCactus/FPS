@@ -9,7 +9,7 @@ public class ViewIndependent2DMove : MoveSystem
 
     }
 
-    void Update()
+    protected override void move()
     {
 
     }

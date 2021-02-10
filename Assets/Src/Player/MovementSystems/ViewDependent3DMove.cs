@@ -9,7 +9,7 @@ public class ViewDependent3DMove : MoveSystem
 
     }
 
-    void Update()
+    protected override void move()
     {
 
     }

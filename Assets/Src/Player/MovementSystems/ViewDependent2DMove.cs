@@ -14,6 +14,7 @@ public class ViewDependent2DMove : MoveSystem
     public InputAction InputAction;
 
     private Rigidbody playerRigidBody;
+    private const float universalMoveMultiplier = 10.0f;
 
     public void Start()
     {
@@ -21,7 +22,7 @@ public class ViewDependent2DMove : MoveSystem
         this.InputAction.Enable();
     }
 
-    public void Update()
+    protected override void move()
     {
         if (!this.InputAction.IsPressed())
         {
@@ -33,7 +34,10 @@ public class ViewDependent2DMove : MoveSystem
         velocity = transform.TransformDirection(velocity);
 
         this.playerRigidBody.MovePosition(
-            this.playerRigidBody.position + velocity * (this.MoveSpeedMultiplier * Time.fixedDeltaTime)
+            this.playerRigidBody.position + velocity
+            * this.MoveSpeedMultiplier
+            * Time.fixedDeltaTime
+            * universalMoveMultiplier
         );
     }
 
