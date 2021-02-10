@@ -6,6 +6,7 @@ using FPS.Player.MovementSystems;
 public class Sprint : MonoBehaviour
 {
     public InputAction sprintButton;
+    public float sprintMultiplier = 2f;
     private MoveSystem playerMovementSystem;
     private System.Type movementSystemType;
     private System.Type currentMoveSystemType;
@@ -38,7 +39,7 @@ public class Sprint : MonoBehaviour
         // Don't need a null check because of the RequireComponent attribute
         if (!this.isSprinting && this.sprintButton.IsPressed())
         {
-            this.playerMovementSystem.MoveSpeedMultiplier = this.playerMovementSystem.MoveSpeedMultiplier * 2;
+            this.playerMovementSystem.MoveSpeedMultiplier = this.playerMovementSystem.MoveSpeedMultiplier * this.sprintMultiplier;
             this.isSprinting = true;
         }
         else if (this.isSprinting && !this.sprintButton.IsPressed())
