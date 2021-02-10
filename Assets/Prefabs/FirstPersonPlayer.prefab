@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 6506092204278434868}
   - component: {fileID: 7279113614935535629}
   - component: {fileID: 8554548845288342865}
+  - component: {fileID: 942897107007187134}
   m_Layer: 0
   m_Name: FirstPersonPlayer
   m_TagString: MainCamera
@@ -165,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ec10536025f17408cd00164daf92f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveSpeedMultiplier: 1
   InputAction:
     m_Name: Input
     m_Type: 0
@@ -213,7 +215,6 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input
       m_Flags: 8
-  MoveSpeedMultiplier: 1
 --- !u!33 &9090195336316038196
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -379,4 +380,32 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: Input
+      m_Flags: 0
+--- !u!114 &942897107007187134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899055768101758558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f77bcb4b428fe439142882c61255a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprintButton:
+    m_Name: Sprint Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5a32820c-9358-42fa-847c-2c298428c083
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 817c5426-c165-4dc1-8514-dc3718bf31ce
+      m_Path: <Keyboard>/shift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Sprint Button
       m_Flags: 0
