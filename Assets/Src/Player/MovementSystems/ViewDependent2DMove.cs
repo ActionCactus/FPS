@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FPS.Player.MovementSystems;
 
 /// <summary>
 /// Transforms the rigidbody's position based on input from the configured InputAction.  Ignores vertical rotations,
@@ -7,13 +8,10 @@ using UnityEngine.InputSystem;
 /// </summary>
 [AddComponentMenu("Player/Movement/ViewDependent2DMove")]
 [RequireComponent(typeof(Rigidbody))]
-public class ViewDependent2DMove : MonoBehaviour
+public class ViewDependent2DMove : MoveSystem
 {
     [Tooltip("The input bindings for this movement system")]
     public InputAction InputAction;
-
-    [Tooltip("The movement speed multiplier for this movement system")]
-    public float MoveSpeedMultiplier = 1.0f;
 
     private Rigidbody playerRigidBody;
 

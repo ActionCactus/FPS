@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using FPS.Player.MovementSystems;
 
 [AddComponentMenu("Player/Movement/ViewIndependent2DMove")]
-public class ViewIndependent2DMove : MonoBehaviour
+public class ViewIndependent2DMove : MoveSystem
 {
     void Start()
     {

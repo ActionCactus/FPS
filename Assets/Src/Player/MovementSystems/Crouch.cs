@@ -9,8 +9,6 @@ public class Crouch : MonoBehaviour
     private Collider playerCollider;
     private Transform playerTransform;
     private bool isCrouched;
-    private Vector3 crouchedScale = new Vector3(1, 2, 3);
-    private Vector3 fullScale;
 
     public void Start()
     {
