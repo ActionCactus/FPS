@@ -409,3 +409,4 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Sprint Button
       m_Flags: 0
+  sprintMultiplier: 1.5

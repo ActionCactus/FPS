@@ -6,7 +6,7 @@ using FPS.Player.MovementSystems;
 public class Sprint : MonoBehaviour
 {
     public InputAction sprintButton;
-    public float sprintMultiplier = 2f;
+    public float sprintMultiplier = 1.5f;
     private MoveSystem playerMovementSystem;
     private System.Type movementSystemType;
     private System.Type currentMoveSystemType;
