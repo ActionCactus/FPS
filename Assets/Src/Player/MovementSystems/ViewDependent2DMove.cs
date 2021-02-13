@@ -14,7 +14,7 @@ public class ViewDependent2DMove : MoveSystem
     public InputAction InputAction;
 
     private Rigidbody playerRigidBody;
-    private const float universalMoveMultiplier = 10.0f;
+    private const float internalMoveSpeedAdjustmentModifier = 10.0f;
 
     public void Start()
     {
@@ -37,7 +37,7 @@ public class ViewDependent2DMove : MoveSystem
             this.playerRigidBody.position + velocity
             * this.MoveSpeedMultiplier
             * Time.fixedDeltaTime
-            * universalMoveMultiplier
+            * internalMoveSpeedAdjustmentModifier
         );
     }
 
