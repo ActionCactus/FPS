@@ -1,6 +1,8 @@
+using UnityEngine;
+
 namespace FPS.Infrastructure
 {
-    public struct ComponentData
+    public class ComponentData : MonoBehaviour
     {
 
     }
