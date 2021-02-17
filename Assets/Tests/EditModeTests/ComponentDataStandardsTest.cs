@@ -4,23 +4,29 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using System.Reflection;
+using System;
+using System.Linq;
+using FPS.Infrastructure;
 
 public class ComponentDataStandardsTest
 {
-    // A Test behaves as an ordinary method
-    [Test]
-    public void ComponentDataStandardsTestSimplePasses()
+    [Test, TestCaseSource("getComponentDataClasses")]
+    public void TestComponentDataStandards(Type classToTest)
     {
-        // Use the Assert class to test conditions
+        MethodInfo[] methods = classToTest.GetMethods();
+
+        Assert.That(
+            methods.Select(method => method.Name),
+            Does.Not.Contain("Update")
+        );
     }
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator ComponentDataStandardsTestWithEnumeratorPasses()
+    private static IEnumerable<Type[]> getComponentDataClasses()
     {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
+        Assembly assembly = typeof(ComponentData).Assembly;
+        foreach (Type dataClass in assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(ComponentData))))
+        {
+            yield return new[] { dataClass };
+        }
     }
 }
