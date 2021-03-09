@@ -1,25 +1,29 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using FPS.Player.MovementSystems;
+using FPS.Player.Data;
 
 [RequireComponent(typeof(MoveSystem))]
+[RequireComponent(typeof(MovementData))]
 public class Sprint : MonoBehaviour
 {
     public InputAction sprintButton;
     public float sprintMultiplier = 1.5f;
+
+    private MovementData playerMovementData;
     private MoveSystem playerMovementSystem;
     private System.Type movementSystemType;
     private System.Type currentMoveSystemType;
     private float originalMoveSpeed;
-    private bool isSprinting = false;
 
 
     public void Start()
     {
+        this.playerMovementData = GetComponent<MovementData>();
         this.playerMovementSystem = GetComponent<MoveSystem>();
         this.movementSystemType = this.playerMovementSystem.GetType();
         this.currentMoveSystemType = this.movementSystemType;
-        this.originalMoveSpeed = this.playerMovementSystem.MoveSpeedMultiplier;
+        this.originalMoveSpeed = this.playerMovementData.MoveSpeedMultiplier;
         this.sprintButton.Enable();
     }
 
@@ -33,19 +37,19 @@ public class Sprint : MonoBehaviour
             // it's been changed.
             this.playerMovementSystem = GetComponent<MoveSystem>();
             this.movementSystemType = this.playerMovementSystem.GetType();
-            this.originalMoveSpeed = this.playerMovementSystem.MoveSpeedMultiplier;
+            this.originalMoveSpeed = this.playerMovementData.MoveSpeedMultiplier;
         }
 
         // Don't need a null check because of the RequireComponent attribute
-        if (!this.isSprinting && this.sprintButton.IsPressed())
+        if (!this.playerMovementData.IsActive(PlayerMovementStates.Sprinting) && this.sprintButton.IsPressed())
         {
-            this.playerMovementSystem.MoveSpeedMultiplier = this.playerMovementSystem.MoveSpeedMultiplier * this.sprintMultiplier;
-            this.isSprinting = true;
+            this.playerMovementData.MoveSpeedMultiplier = this.playerMovementData.MoveSpeedMultiplier * this.sprintMultiplier;
+            this.playerMovementData.SetActive(PlayerMovementStates.Sprinting);
         }
-        else if (this.isSprinting && !this.sprintButton.IsPressed())
+        else if (this.playerMovementData.IsActive(PlayerMovementStates.Sprinting) && !this.sprintButton.IsPressed())
         {
-            this.playerMovementSystem.MoveSpeedMultiplier = this.originalMoveSpeed; // division is apparently expensive?  We'll save a tick or two here lol
-            this.isSprinting = false;
+            this.playerMovementData.MoveSpeedMultiplier = this.originalMoveSpeed; // division is apparently expensive?  We'll save a tick or two here lol
+            this.playerMovementData.SetInactive(PlayerMovementStates.Sprinting);
         }
     }
 

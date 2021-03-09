@@ -1,19 +1,22 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FPS.Player.Data;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(MovementData))]
 public class Jump : MonoBehaviour
 {
     public InputAction InputAction;
 
-    public float jumpForce = 5f;
     public float groundDistanceCheck = 1f;
+
+    private MovementData playerMovementData;
 
     private Rigidbody rigidBody;
 
-    private bool isJumping = false;
     public void Start()
     {
+        this.playerMovementData = GetComponent<MovementData>();
         this.rigidBody = GetComponent<Rigidbody>();
         this.InputAction.Enable();
     }
@@ -24,16 +27,16 @@ public class Jump : MonoBehaviour
         // TODO: this won't work if the player hits & releases the jump button in very rapid succession (IE: two sequential frames, before the player has really moved)
         if (this.isGrounded() && !this.InputAction.IsPressed())
         {
-            this.isJumping = false;
+            this.playerMovementData.SetInactive(PlayerMovementStates.Jumping);
         }
 
-        if (!this.InputAction.IsPressed() || this.isJumping)
+        if (!this.InputAction.IsPressed() || this.playerMovementData.IsActive(PlayerMovementStates.Jumping))
         {
             return;
         }
 
-        this.rigidBody.AddForce(new Vector3(0, this.jumpForce, 0), ForceMode.Impulse);
-        this.isJumping = true;
+        this.rigidBody.AddForce(new Vector3(0, this.playerMovementData.JumpForce, 0), ForceMode.Impulse);
+        this.playerMovementData.SetActive(PlayerMovementStates.Jumping);
     }
 
     public void OnDestroy()

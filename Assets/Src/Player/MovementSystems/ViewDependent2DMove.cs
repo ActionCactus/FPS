@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using FPS.Player.MovementSystems;
+using FPS.Player.Data;
 
 /// <summary>
 /// Transforms the rigidbody's position based on input from the configured InputAction.  Ignores vertical rotations,
@@ -8,16 +9,19 @@ using FPS.Player.MovementSystems;
 /// </summary>
 [AddComponentMenu("Player/Movement/ViewDependent2DMove")]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(MovementData))]
 public class ViewDependent2DMove : MoveSystem
 {
     [Tooltip("The input bindings for this movement system")]
     public InputAction InputAction;
 
+    private MovementData playerMovementData;
     private Rigidbody playerRigidBody;
     private const float internalMoveSpeedAdjustmentModifier = 10.0f;
 
     public void Start()
     {
+        this.playerMovementData = GetComponent<MovementData>();
         this.playerRigidBody = GetComponent<Rigidbody>();
         this.InputAction.Enable();
     }
@@ -35,7 +39,7 @@ public class ViewDependent2DMove : MoveSystem
 
         this.playerRigidBody.MovePosition(
             this.playerRigidBody.position + velocity
-            * this.MoveSpeedMultiplier
+            * this.playerMovementData.MoveSpeedMultiplier
             * Time.fixedDeltaTime
             * internalMoveSpeedAdjustmentModifier
         );
