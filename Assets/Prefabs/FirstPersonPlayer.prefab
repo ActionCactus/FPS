@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 8554548845288342865}
   - component: {fileID: 942897107007187134}
   - component: {fileID: -8995129019685805106}
+  - component: {fileID: -385016732015725927}
   m_Layer: 0
   m_Name: FirstPersonPlayer
   m_TagString: MainCamera
@@ -167,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ec10536025f17408cd00164daf92f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeedMultiplier: 1
   InputAction:
     m_Name: Input
     m_Type: 0
@@ -302,7 +302,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7899055768101758558}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: be82120957b83b942bb90f6ca82f7308, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -352,7 +352,6 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input
       m_Flags: 0
-  jumpForce: 5
   groundDistanceCheck: 1
 --- !u!114 &8554548845288342865
 MonoBehaviour:
@@ -424,8 +423,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febb86c6c6b03904ea1a5b6208ba0671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerRigidBody: {fileID: 0}
-  PlayerCollider: {fileID: 0}
-  PlayerTransform: {fileID: 0}
   MoveSpeedMultiplier: 1
   RotationSpeedMultiplier: 1
+  JumpForce: 5
+--- !u!114 &-385016732015725927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899055768101758558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfeb61c88fb1cd4297828c9eb95a712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

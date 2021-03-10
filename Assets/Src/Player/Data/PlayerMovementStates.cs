@@ -5,6 +5,6 @@ namespace FPS.Player.Data
         Crouched,
         Sprinting,
         Jumping,
-        Sliding
+        CrouchSliding
     }
 }
