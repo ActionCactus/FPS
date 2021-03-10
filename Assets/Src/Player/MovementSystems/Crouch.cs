@@ -33,19 +33,17 @@ public class Crouch : MonoBehaviour
 
     public void Update()
     {
+        if (this.playerMovementData.IsActive(PlayerMovementStates.Sprinting))
+        {
+            // defer to the crouch slide component
+            return;
+        }
+
         if (!this.playerMovementData.IsActive(PlayerMovementStates.Crouched) && this.InputAction.IsPressed())
         {
             // shrink
-            this.playerCollider.transform.localScale = new Vector3(
-                this.playerCollider.transform.localScale.x,
-                this.playerCollider.transform.localScale.y / 2,
-                this.playerCollider.transform.localScale.z
-            );
-            this.playerTransform.transform.localScale = new Vector3(
-                this.playerTransform.transform.localScale.x,
-                this.playerTransform.transform.localScale.y / 2,
-                this.playerTransform.transform.localScale.z
-            );
+            this.playerCollider.transform.localScale = CrouchUtil.shrink(this.playerCollider.transform.localScale);
+            this.playerTransform.transform.localScale = CrouchUtil.shrink(this.playerTransform.transform.localScale);
             this.originalMoveSpeed = this.playerMovementData.MoveSpeedMultiplier;
             this.playerMovementData.MoveSpeedMultiplier = this.playerMovementData.MoveSpeedMultiplier * this.moveSpeedReductionMultiplier;
             this.playerMovementData.SetActive(PlayerMovementStates.Crouched);
@@ -53,16 +51,8 @@ public class Crouch : MonoBehaviour
         else if (this.playerMovementData.IsActive(PlayerMovementStates.Crouched) && !this.InputAction.IsPressed())
         {
             // grow
-            this.playerCollider.transform.localScale = new Vector3(
-                this.playerCollider.transform.localScale.x,
-                this.playerCollider.transform.localScale.y * 2,
-                this.playerCollider.transform.localScale.z
-            );
-            this.playerTransform.transform.localScale = new Vector3(
-                this.playerTransform.transform.localScale.x,
-                this.playerTransform.transform.localScale.y * 2,
-                this.playerTransform.transform.localScale.z
-            );
+            this.playerCollider.transform.localScale = CrouchUtil.unshrink(this.playerCollider.transform.localScale);
+            this.playerTransform.transform.localScale = CrouchUtil.unshrink(this.playerTransform.transform.localScale);
             this.playerMovementData.MoveSpeedMultiplier = this.originalMoveSpeed;
             this.playerMovementData.SetInactive(PlayerMovementStates.Crouched);
         }

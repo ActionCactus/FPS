@@ -4,6 +4,7 @@ namespace FPS.Player.Data
     {
         Crouched,
         Sprinting,
-        Jumping
+        Jumping,
+        Sliding
     }
 }
